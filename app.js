@@ -1,24 +1,16 @@
 'use strict';
+
+const memo = new Map();
+memo.set(0, 0);
+memo.set(1, 1);
 function fib(n) {
-  if (n === 0) {
-    return 0;
-  } else if (n === 1) {
-    return 1;
+  if (memo.has(n)) {
+    return memo.get(n);
   }
-  return fib(n - 1) + fib(n - 2);
+  const value = fib(n - 1) + fib(n - 2);
+  memo.set(n, value);
+  return value;
 }
-
-// 2のとき
-// fib(1)+fib(0)=1
-
-// 3のとき
-// fib(2)+fib(1)=1+1=2
-
-// 4のとき
-// fib(3)+fib(2)=2+1=3
-
-// 5のとき
-// fib(4)+fib(3)=3+2=5
 
 const length = 40;
 for (let i = 0; i <= length; i++) {
